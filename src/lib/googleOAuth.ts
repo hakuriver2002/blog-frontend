@@ -38,18 +38,7 @@ export function buildGoogleOAuthURL(options: GoogleOAuthOptions) {
 }
 
 export function redirectToGoogle() {
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    if (!clientId) {
-        console.error("Missing NEXT_PUBLIC_GOOGLE_CLIENT_ID");
-        return;
-    }
-
-    const url = buildGoogleOAuthURL({
-        clientId,
-        redirectUri: `${window.location.origin}/auth/callback/google`, // Sync with store and callback page
-    });
-
-    window.location.href = url;
+    window.location.href = "http://localhost:3000/api/auth/google";
 }
 
 export function verifyOAuthState(returnedState: string): boolean {

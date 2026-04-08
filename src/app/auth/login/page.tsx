@@ -12,7 +12,6 @@ import {
     GoogleButton,
     OAuthDivider,
 } from '@/src/components/auth';
-import Navbar from '@/src/components/layout/Navbar';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -33,7 +32,7 @@ export default function LoginPage() {
         if (res?.success) {
             setServerSuccess(res.message);
             setTimeout(() => {
-                router.push('/');
+                router.push(res.redirectTo);
             }, 1000);
         } else {
             setServerSuccess(null);
@@ -176,7 +175,6 @@ export default function LoginPage() {
                     <Link href="/privacy" className="underline hover:text-zinc-600">Privacy Policy</Link>.
                 </p>
             </div>
-            {/* Google button */}
         </div>
     );
 }

@@ -12,7 +12,7 @@ interface AuthState {
     fieldErrors: Record<string, string>;
     isAuthenticated: boolean;
 
-    login: (payload: LoginPayload) => Promise<{ success: boolean; message: string } | null>;
+    login: (payload: LoginPayload) => Promise<{ success: boolean; message: string; redirectTo: string } | null>;
     register: (payload: RegisterPayload) => Promise<{ success: boolean; message: string } | null>;
     googleLogin: (code: string) => Promise<boolean>;
     forgotPassword: (payload: ForgotPasswordPayload) => Promise<string | null>;
@@ -51,7 +51,8 @@ export const useAuthStore = create<AuthState>()(
                         });
                         return {
                             success: true,
-                            message: res.message
+                            message: res.message,
+                            redirectTo: res.data.redirectTo,
                         };
                     } catch (err: any) {
                         const message =
@@ -65,7 +66,8 @@ export const useAuthStore = create<AuthState>()(
                         });
                         return {
                             success: false,
-                            message
+                            message,
+                            redirectTo: '',
                         };
                     }
                 },

@@ -17,42 +17,28 @@ export default function GoogleCallbackPage() {
     const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
-        const code = params.get('code');
-        const state = params.get('state');
         const error = params.get('error');
+        const success = params.get('success');
 
         if (error) {
-            setErrorMsg('Google error: ' + error);
+            setErrorMsg(error);
             setStatus('error');
             return;
         }
 
-        if (!code) {
-            setErrorMsg('No code returned');
-            setStatus('error');
+        if (success) {
+            const redirectTo =
+                sessionStorage.getItem('auth_redirect') ?? '/';
+
+            sessionStorage.removeItem('auth_redirect');
+
+            router.replace(redirectTo);
             return;
         }
 
-        if (state && !verifyOAuthState(state)) {
-            setErrorMsg('Invalid state');
-            setStatus('error');
-            return;
-        }
-
-        googleLogin(code).then((ok) => {
-            if (ok) {
-                const redirectTo =
-                    sessionStorage.getItem('auth_redirect') ?? '/';
-
-                sessionStorage.removeItem('auth_redirect');
-
-                router.replace(redirectTo);
-            } else {
-                setErrorMsg('Google login failed');
-                setStatus('error');
-            }
-        });
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+        setErrorMsg('Invalid OAuth flow');
+        setStatus('error');
+    }, []);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center">
