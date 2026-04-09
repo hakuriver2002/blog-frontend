@@ -61,101 +61,124 @@ export default function ResetPasswordPage() {
     };
 
     return (
-        <div>
-            {/* Header */}
-            <div className="mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center mb-5">
-                    <svg className="w-7 h-7 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </div>
-                <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2">
-                    Set new password
-                </h1>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-                    Choose a strong password you haven&apos;t used before.
-                </p>
+        <div className='min-h-screen flex items-center justify-center'>
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div
+                    className="blob-1 absolute top-20 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-25"
+                    style={{ background: "radial-gradient(circle, #1A56E8, #7C3AED)" }}
+                />
+                <div
+                    className="blob-2 absolute top-40 right-0 w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
+                    style={{ background: "radial-gradient(circle, #E8320A, #F59E0B)" }}
+                />
+                <div
+                    className="blob-3 absolute bottom-20 left-1/3 w-[350px] h-[350px] rounded-full blur-3xl opacity-15"
+                    style={{ background: "radial-gradient(circle, #00C46A, #1A56E8)" }}
+                />
+                {/* Decorative orbs */}
+                <div
+                    className="spin-slow absolute top-48 right-24 w-64 h-64 rounded-full border-2 border-dashed opacity-10"
+                    style={{ borderColor: "#1A56E8" }}
+                />
+                <div
+                    className="blob-4 absolute bottom-32 right-1/4 w-20 h-20 rounded-[24px] opacity-30"
+                    style={{ background: "linear-gradient(135deg, #F59E0B, #E8320A)" }}
+                />
+                <div
+                    className="blob-2 absolute top-64 left-1/4 w-12 h-12 rounded-[18px] opacity-40"
+                    style={{ background: "linear-gradient(135deg, #1A56E8, #7C3AED)" }}
+                />
             </div>
-
-            {/* Success */}
-            {success ? (
-                <div className="space-y-5">
-                    <FormAlert success={true} message="Password updated! Redirecting you to login…" />
-                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1 overflow-hidden">
-                        <div className="h-full bg-indigo-600 animate-[progress_3s_linear_forwards]" style={{ width: '100%' }} />
-                    </div>
-                    <Link href="/auth/login" className="block text-center text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
-                        Go to login now
-                    </Link>
+            {/* Header */}
+            <div className="w-full max-w-sm backdrop-blur-lg bg-white/70 shadow-xl rounded-2xl p-6">
+                <div className="mb-2">
+                    <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2">
+                        Set new password
+                    </h1>
+                    <p className="text-zinc-500 dark:text-zinc-400 text-sm">
+                        Choose a strong password you haven&apos;t used before.
+                    </p>
                 </div>
-            ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-4">
-                    {serverError && <FormAlert success={false} message={serverError} />}
+                {/* Success */}
+                {success ? (
+                    <div className="space-y-5">
+                        <FormAlert success={true} message="Password updated! Redirecting you to login…" />
+                        <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1 overflow-hidden">
+                            <div className="h-full bg-indigo-600 animate-[progress_3s_linear_forwards]" style={{ width: '100%' }} />
+                        </div>
+                        <Link href="/auth/login" className="block text-center text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+                            Go to login now
+                        </Link>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit} noValidate className="space-y-4">
+                        {serverError && <FormAlert success={false} message={serverError} />}
 
-                    {/* New password */}
-                    <div>
+                        {/* New password */}
+                        <div>
+                            <PasswordInput
+                                id="new-password"
+                                label="New password"
+                                value={password}
+                                onChange={(e) => { setPassword(e.target.value); setClientErrors((p) => ({ ...p, password: undefined as unknown as string })); }}
+                                placeholder="Min 8 characters"
+                                autoComplete="new-password"
+                                required
+                                error={errors.password}
+                            />
+                            <PasswordStrength password={password} />
+                        </div>
+
+                        {/* Confirm */}
                         <PasswordInput
-                            id="new-password"
-                            label="New password"
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value); setClientErrors((p) => ({ ...p, password: undefined as unknown as string })); }}
-                            placeholder="Min 8 characters"
+                            id="confirm-new-password"
+                            label="Confirm new password"
+                            value={confirmPassword}
+                            onChange={(e) => { setConfirmPassword(e.target.value); setClientErrors((p) => ({ ...p, confirmPassword: undefined as unknown as string })); }}
+                            placeholder="Repeat password"
                             autoComplete="new-password"
                             required
-                            error={errors.password}
+                            error={errors.confirmPassword}
                         />
-                        <PasswordStrength password={password} />
-                    </div>
 
-                    {/* Confirm */}
-                    <PasswordInput
-                        id="confirm-new-password"
-                        label="Confirm new password"
-                        value={confirmPassword}
-                        onChange={(e) => { setConfirmPassword(e.target.value); setClientErrors((p) => ({ ...p, confirmPassword: undefined as unknown as string })); }}
-                        placeholder="Repeat password"
-                        autoComplete="new-password"
-                        required
-                        error={errors.confirmPassword}
-                    />
+                        {/* Password requirements hint */}
+                        <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1.5">
+                            <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Password must include:</p>
+                            {[
+                                { rule: /^.{8,}$/, text: 'At least 8 characters' },
+                                { rule: /[A-Z]/, text: 'One uppercase letter' },
+                                { rule: /[0-9]/, text: 'One number' },
+                                { rule: /[^A-Za-z0-9]/, text: 'One special character' },
+                            ].map(({ rule, text }) => (
+                                <div key={text} className="flex items-center gap-2 text-xs">
+                                    <span className={rule.test(password) ? 'text-emerald-500' : 'text-zinc-300 dark:text-zinc-600'}>
+                                        {rule.test(password) ? '✓' : '○'}
+                                    </span>
+                                    <span className={rule.test(password) ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400'}>
+                                        {text}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
 
-                    {/* Password requirements hint */}
-                    <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1.5">
-                        <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Password must include:</p>
-                        {[
-                            { rule: /^.{8,}$/, text: 'At least 8 characters' },
-                            { rule: /[A-Z]/, text: 'One uppercase letter' },
-                            { rule: /[0-9]/, text: 'One number' },
-                            { rule: /[^A-Za-z0-9]/, text: 'One special character' },
-                        ].map(({ rule, text }) => (
-                            <div key={text} className="flex items-center gap-2 text-xs">
-                                <span className={rule.test(password) ? 'text-emerald-500' : 'text-zinc-300 dark:text-zinc-600'}>
-                                    {rule.test(password) ? '✓' : '○'}
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg"
+                        >
+                            {isLoading ? (
+                                <span className="flex items-center justify-center gap-2">
+                                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                                    </svg>
+                                    Updating password…
                                 </span>
-                                <span className={rule.test(password) ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400'}>
-                                    {text}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg"
-                    >
-                        {isLoading ? (
-                            <span className="flex items-center justify-center gap-2">
-                                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                                </svg>
-                                Updating password…
-                            </span>
-                        ) : 'Update password'}
-                    </button>
-                </form>
-            )}
+                            ) : 'Update password'}
+                        </button>
+                    </form>
+                )}
+            </div>
         </div>
     );
 }
