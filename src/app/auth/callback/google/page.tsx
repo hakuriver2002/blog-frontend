@@ -7,38 +7,43 @@ import { verifyOAuthState } from '@/src/lib/googleOAuth';
 import { Spinner } from '@/src/components/ui';
 import { FormAlert } from '@/src/components/auth';
 import Link from 'next/link';
+import authApi from '@/src/lib/authApi';
 
 export default function GoogleCallbackPage() {
     const router = useRouter();
     const params = useSearchParams();
-    const googleLogin = useAuthStore((s) => s.googleLogin);
+    // const googleLogin = useAuthStore((s) => s.googleLogin);
+    const { setTokens, user } = useAuthStore();
 
     const [status, setStatus] = useState<'loading' | 'error'>('loading');
     const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
-        const error = params.get('error');
-        const success = params.get('success');
+        const token = params.get('token');
+        if (token) {
+            setTokens(token, "");
 
-        if (error) {
-            setErrorMsg(error);
-            setStatus('error');
-            return;
+            const fetchUser = async () => {
+                try {
+                    const userData = await authApi.me(token);
+
+                    // Manual state update to be safe
+                    useAuthStore.setState({
+                        user: userData,
+                        accessToken: token,
+                        isLoading: false
+                    });
+
+                    router.push(userData?.role === 'admin' ? '/dashboard' : '/');
+                } catch (err) {
+                    console.error("Fetch Me Error:", err);
+                    router.push('/auth/login?error=profile_fetch_failed');
+                }
+            };
+
+            fetchUser();
         }
-
-        if (success) {
-            const redirectTo =
-                sessionStorage.getItem('auth_redirect') ?? '/';
-
-            sessionStorage.removeItem('auth_redirect');
-
-            router.replace(redirectTo);
-            return;
-        }
-
-        setErrorMsg('Invalid OAuth flow');
-        setStatus('error');
-    }, []);
+    }, [params]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center">

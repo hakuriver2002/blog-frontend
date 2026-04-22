@@ -35,7 +35,7 @@ export const articlesApi = {
     // ── List ──
     list: async (filters: ArticleFilters = {}): Promise<PaginatedArticles> => {
         const res = await api.get<ApiResponse<PaginatedArticles>>(
-            `/api/articles${buildQuery(filters)}`
+            `/articles${buildQuery(filters)}`
         );
         return res.data.data;
     },
@@ -81,7 +81,7 @@ export const articlesApi = {
         });
 
         const res = await api.put<ApiResponse<Article>>(
-            `/api/articles/${id}`,
+            `/articles/${id}`,
             form,
             { headers: { 'Content-Type': 'multipart/form-data' } }
         );
@@ -91,13 +91,13 @@ export const articlesApi = {
 
     // ── Delete ──
     delete: async (id: string): Promise<void> => {
-        await api.delete(`/api/articles/${id}`);
+        await api.delete(`/articles/${id}`);
     },
 
     // ── Submit ──
     submit: async (id: string): Promise<Article> => {
         const res = await api.patch<ApiResponse<Article>>(
-            `/api/articles/${id}/submit`
+            `/articles/${id}/submit`
         );
         return res.data.data;
     },
@@ -105,7 +105,7 @@ export const articlesApi = {
     // ── Approve ──
     approve: async (id: string): Promise<Article> => {
         const res = await api.patch<ApiResponse<Article>>(
-            `/api/articles/${id}/approve`
+            `/articles/${id}/approve`
         );
         return res.data.data;
     },
@@ -113,7 +113,7 @@ export const articlesApi = {
     // ── Reject ──
     reject: async (id: string, reason: string): Promise<Article> => {
         const res = await api.patch<ApiResponse<Article>>(
-            `/api/articles/${id}/reject`,
+            `/articles/${id}/reject`,
             { reason }
         );
         return res.data.data;
@@ -130,7 +130,7 @@ export const uploadApi = {
         const form = new FormData();
         form.append('image', file);
 
-        const res = await api.post('/api/upload/image', form, {
+        const res = await api.post('/upload/image', form, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -146,7 +146,7 @@ export const uploadApi = {
         const form = new FormData();
         form.append('avatar', file);
 
-        const res = await api.post('/api/upload/avatar', form, {
+        const res = await api.post('/upload/avatar', form, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

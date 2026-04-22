@@ -65,7 +65,7 @@ export interface Pagination {
 }
 
 export interface PaginatedArticles {
-    data: Article[];
+    articles: Article[];
     pagination: Pagination;
 }
 

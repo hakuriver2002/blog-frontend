@@ -41,7 +41,7 @@ export const useArticleStore = create<ArticleState>()(
             totalArticles: 0,
             currentPage: 1,
             totalPages: 1,
-            filters: { page: 1, limit: 10 },
+            filters: { page: 1, limit: 5 },
             isLoading: false,
             error: null,
 
@@ -62,7 +62,7 @@ export const useArticleStore = create<ArticleState>()(
                     const res = await articlesApi.list(filters);
 
                     set({
-                        articles: res.data,
+                        articles: res.articles,
                         totalArticles: res.pagination.total,
                         currentPage: res.pagination.page,
                         totalPages: res.pagination.totalPages,

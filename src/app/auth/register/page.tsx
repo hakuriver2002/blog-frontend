@@ -211,10 +211,10 @@ export default function RegisterPage() {
                     </button>
                 </form>
 
-                <OAuthDivider />
+                {/* <OAuthDivider /> */}
 
                 {/* Google button */}
-                <GoogleButton label="Continue with Google" isLoading={isLoading} />
+                {/* <GoogleButton label="Continue with Google" isLoading={isLoading} /> */}
 
                 {/* Terms */}
                 <p className="mt-6 text-xs text-center text-zinc-400 dark:text-zinc-500">

@@ -78,7 +78,7 @@ export function ArticleCard({ article }: { article: Article }) {
 }
 
 export function ArticleGrid({ articles }: { articles: Article[] }) {
-    if (articles.length === 0) {
+    if (articles?.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-24 gap-4 text-zinc-400">
                 <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ export function ArticleGrid({ articles }: { articles: Article[] }) {
     }
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((a) => <ArticleCard key={a.id} article={a} />)}
+            {articles?.map((a) => <ArticleCard key={a.id} article={a} />)}
         </div>
     );
 }

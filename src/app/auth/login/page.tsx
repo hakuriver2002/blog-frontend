@@ -161,10 +161,10 @@ export default function LoginPage() {
                     </button>
                 </form>
 
-                <OAuthDivider />
+                {/* <OAuthDivider /> */}
 
                 {/* Google button */}
-                <GoogleButton label="Continue with Google" isLoading={isLoading} />
+                {/* <GoogleButton label="Continue with Google" isLoading={isLoading} /> */}
 
 
                 {/* Terms */}
