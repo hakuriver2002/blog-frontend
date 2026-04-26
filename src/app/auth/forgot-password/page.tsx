@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center'>
+        <div className='min-h-screen flex items-center justify-center transition-colors duration-300' style={{ background: "var(--background)" }}>
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
                     className="blob-1 absolute top-20 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-25"
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
                     style={{ background: "linear-gradient(135deg, #1A56E8, #7C3AED)" }}
                 />
             </div>
-            <div className="w-full max-w-sm backdrop-blur-lg bg-white/70 shadow-xl rounded-2xl p-6">
+            <div className="w-full max-w-sm backdrop-blur-lg bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl rounded-2xl p-6 transition-colors duration-300">
                 {/* Back */}
                 <Link
                     href="/auth/login"
@@ -81,7 +81,7 @@ export default function ForgotPasswordPage() {
                     <div className="space-y-6">
                         <FormAlert success={true} message={successMsg} />
 
-                        <div className="p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-3">
+                        <div className="p-5 rounded-2xl bg-[var(--foreground)]/5 border border-[var(--glass-border)] space-y-3 transition-colors duration-300">
                             <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">What happens next?</p>
                             <ul className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
                                 {[
@@ -101,7 +101,7 @@ export default function ForgotPasswordPage() {
 
                         <button
                             onClick={() => { setSuccessMsg(null); setEmail(''); }}
-                            className="w-full py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                            className="w-full py-3 rounded-xl border border-[var(--glass-border)] text-sm font-medium text-zinc-500 hover:bg-[var(--foreground)]/5 transition-colors"
                         >
                             Resend email
                         </button>
@@ -128,7 +128,8 @@ export default function ForgotPasswordPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg"
+                            className="w-full py-3 px-4 rounded-xl hover:opacity-85 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg mt-2"
+                            style={{ background: "linear-gradient(90deg, var(--color-mokoto-main), var(--foreground))" }}
                         >
                             {isLoading ? (
                                 <span className="flex items-center justify-center gap-2">

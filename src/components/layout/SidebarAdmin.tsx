@@ -196,9 +196,9 @@ export function AdminSidebar() {
     }, [mobileOpen]);
 
     const ROLE_BADGE: Record<string, { label: string; cls: string }> = {
-        admin: { label: '👑 Admin', cls: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300' },
-        editor: { label: '✏️ Editor', cls: 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300' },
-        trainer: { label: '🎓 Trainer', cls: 'bg-sky-100    text-sky-700    dark:bg-sky-900/40    dark:text-sky-300' },
+        ADMIN: { label: '👑 Admin', cls: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300' },
+        EDITOR: { label: '✏️ Editor', cls: 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300' },
+        TRAINER: { label: '🎓 Trainer', cls: 'bg-sky-100    text-sky-700    dark:bg-sky-900/40    dark:text-sky-300' },
     };
 
     const canPublish = isAdmin || isEditor;

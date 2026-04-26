@@ -79,7 +79,7 @@ export default function RegisterPage() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center transition-colors duration-300" style={{ background: "var(--background)" }}>
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
                     className="blob-1 absolute top-20 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-25"
@@ -107,10 +107,10 @@ export default function RegisterPage() {
                     style={{ background: "linear-gradient(135deg, #1A56E8, #7C3AED)" }}
                 />
             </div>
-            <div className="w-full max-w-sm backdrop-blur-lg bg-white/70 shadow-xl rounded-2xl p-6">
+            <div className="w-full max-w-sm backdrop-blur-lg bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl rounded-2xl p-6 transition-colors duration-300">
                 <div className="flex justify-center mb-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-100 shadow"
-                        style={{ background: "linear-gradient(135deg, #1A56E8 0%, #7C3AED 100%)" }}>
+                        style={{ background: "linear-gradient(90deg, var(--color-mokoto-main), var(--foreground))" }}>
                         <span style={{ color: "#ffffff" }}>A</span>
                     </div>
                 </div>
@@ -197,7 +197,8 @@ export default function RegisterPage() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg mt-2"
+                        className="w-full py-3 px-4 rounded-xl hover:opacity-85 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg mt-2"
+                        style={{ background: "linear-gradient(90deg, var(--color-mokoto-main), var(--foreground))" }}
                     >
                         {isLoading ? (
                             <span className="flex items-center justify-center gap-2">

@@ -243,7 +243,7 @@ export default function HeroSection() {
                             >
                                 {stat.value}
                             </div>
-                            <div className="text-xs font-medium" style={{ color: "var(--color-mokoto-65)" }}>
+                            <div className="text-xs font-medium" style={{ color: "text-[var(--foreground)]" }}>
                                 {stat.label}
                             </div>
                         </div>

@@ -25,20 +25,36 @@ export default function ResetPasswordPage() {
 
     if (!token) {
         return (
-            <div className="text-center space-y-4">
-                <div className="w-14 h-14 mx-auto rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <svg className="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
+            <div className='min-h-screen flex items-center justify-center transition-colors duration-300' style={{ background: "var(--background)" }}>
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div
+                        className="blob-1 absolute top-20 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-25"
+                        style={{ background: "radial-gradient(circle, #1A56E8, #7C3AED)" }}
+                    />
+                    <div
+                        className="blob-2 absolute top-40 right-0 w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
+                        style={{ background: "radial-gradient(circle, #E8320A, #F59E0B)" }}
+                    />
+                    <div
+                        className="blob-3 absolute bottom-20 left-1/3 w-[350px] h-[350px] rounded-full blur-3xl opacity-15"
+                        style={{ background: "radial-gradient(circle, #00C46A, #1A56E8)" }}
+                    />
                 </div>
-                <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Invalid link</h2>
-                <p className="text-zinc-500 text-sm">This reset link is missing or invalid.</p>
-                <Link
-                    href="/auth/forgot-password"
-                    className="inline-block text-indigo-600 dark:text-indigo-400 font-medium hover:underline text-sm"
-                >
-                    Request a new link
-                </Link>
+                <div className="relative z-10 w-full max-w-sm backdrop-blur-lg bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl rounded-2xl p-8 text-center space-y-4 transition-colors duration-300">
+                    <div className="w-14 h-14 mx-auto rounded-2xl bg-red-500/10 flex items-center justify-center">
+                        <svg className="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-[var(--foreground)]">Invalid link</h2>
+                    <p className="text-zinc-500 text-sm">This reset link is missing or invalid.</p>
+                    <Link
+                        href="/auth/forgot-password"
+                        className="inline-block text-indigo-600 dark:text-indigo-400 font-medium hover:underline text-sm"
+                    >
+                        Request a new link
+                    </Link>
+                </div>
             </div>
         );
     }
@@ -61,7 +77,7 @@ export default function ResetPasswordPage() {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center'>
+        <div className='min-h-screen flex items-center justify-center transition-colors duration-300' style={{ background: "var(--background)" }}>
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
                     className="blob-1 absolute top-20 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-25"
@@ -89,8 +105,7 @@ export default function ResetPasswordPage() {
                     style={{ background: "linear-gradient(135deg, #1A56E8, #7C3AED)" }}
                 />
             </div>
-            {/* Header */}
-            <div className="w-full max-w-sm backdrop-blur-lg bg-white/70 shadow-xl rounded-2xl p-6">
+            <div className="w-full max-w-sm backdrop-blur-lg bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl rounded-2xl p-6 transition-colors duration-300">
                 <div className="mb-2">
                     <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2">
                         Set new password
@@ -103,10 +118,10 @@ export default function ResetPasswordPage() {
                 {success ? (
                     <div className="space-y-5">
                         <FormAlert success={true} message="Password updated! Redirecting you to login…" />
-                        <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1 overflow-hidden">
+                        <div className="w-full bg-[var(--foreground)]/10 rounded-full h-1 overflow-hidden transition-colors duration-300">
                             <div className="h-full bg-indigo-600 animate-[progress_3s_linear_forwards]" style={{ width: '100%' }} />
                         </div>
-                        <Link href="/auth/login" className="block text-center text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+                        <Link href="/auth/login" className="block text-center text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline">
                             Go to login now
                         </Link>
                     </div>
@@ -142,7 +157,7 @@ export default function ResetPasswordPage() {
                         />
 
                         {/* Password requirements hint */}
-                        <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1.5">
+                        <div className="p-3 rounded-xl bg-[var(--foreground)]/5 border border-[var(--glass-border)] space-y-1.5 transition-colors duration-300">
                             <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Password must include:</p>
                             {[
                                 { rule: /^.{8,}$/, text: 'At least 8 characters' },
@@ -164,7 +179,8 @@ export default function ResetPasswordPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg"
+                            className="w-full py-3 px-4 rounded-xl hover:opacity-85 text-white font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-sm hover:shadow-indigo-500/25 hover:shadow-lg mt-2"
+                            style={{ background: "linear-gradient(90deg, var(--color-mokoto-main), var(--foreground))" }}
                         >
                             {isLoading ? (
                                 <span className="flex items-center justify-center gap-2">
