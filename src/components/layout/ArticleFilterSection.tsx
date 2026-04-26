@@ -84,9 +84,9 @@ export default function ArticleFilterSection() {
 
                 <div className='relative max-w-7xl mx-auto w-full'>
                     {/* ── Hero header ──────────────────────────────────────── */}
-                    <div className="mb-8 "
-                        style={{ background: "rgba(255,255,255,0.65)", backdropFilter: "blur(20px)" }}>
-                        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
+                    <div className="mb-8 rounded-2xl p-6 transition-colors duration-300"
+                        style={{ background: "var(--glass-bg)", backdropFilter: "blur(20px)" }}>
+                        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--foreground)] mb-3">
                             Latest Articles
                         </h1>
                     </div>
@@ -102,7 +102,7 @@ export default function ArticleFilterSection() {
                                 value={searchInput}
                                 onChange={(e) => setSearchInput(e.target.value)}
                                 placeholder="Search articles…"
-                                className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                                className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--background)] text-sm text-[var(--foreground)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
                             />
                             {searchInput && (
                                 <button
@@ -130,8 +130,8 @@ export default function ArticleFilterSection() {
                     </div>
 
                     {/* ── Main layout: sidebar + grid ──────────────────────── */}
-                    <div className="flex gap-8 items-start"
-                        style={{ background: "rgba(255,255,255,0.65)", backdropFilter: "blur(20px)" }}>
+                    <div className="flex gap-8 items-start rounded-3xl p-6 transition-colors duration-300"
+                        style={{ background: "var(--glass-bg)", backdropFilter: "blur(20px)" }}>
 
                         {/* Desktop sidebar */}
                         <FilterSidebar />

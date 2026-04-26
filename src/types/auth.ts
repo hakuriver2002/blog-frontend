@@ -2,8 +2,8 @@ export interface User {
     id: string;
     fullName: string;
     email: string;
-    role: 'admin' | 'editor' | 'trainer' | 'member';
-    status: 'active' | 'pending' | 'banned';
+    role: 'ADMIN' | 'EDITOR' | 'TRAINER' | 'MEMBER';
+    status: 'ACTIVE' | 'PENDING' | 'INACTIVE' | 'REJECTED';
     avatarUrl: string;
     createdAt: string;
 }

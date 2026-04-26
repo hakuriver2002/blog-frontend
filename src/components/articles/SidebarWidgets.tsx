@@ -11,42 +11,41 @@ export default function SidebarWidgets() {
 
             {/* Most read */}
             <div
-                className="rounded-[28px] p-6 shadow-clay-card"
-                style={{ background: "rgba(255,255,255,0.70)", backdropFilter: "blur(20px)" }}
+                className="rounded-[24px] p-6 bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-xl"
             >
-                <div className="flex items-center gap-2 mb-4">
-                    <span className="text-xl">📊</span>
+                <div className="flex items-center gap-2 mb-6">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
                     <h3
-                        className="text-base font-black"
-                        style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                        className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest"
                     >
                         Đọc Nhiều Nhất
                     </h3>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-6">
                     {popular.map((a, i) => (
-                        <div key={a.id} className="flex items-center gap-3 group cursor-pointer">
+                        <div key={a.id} className="flex items-center gap-4 group cursor-pointer">
                             <div
-                                className="flex-shrink-0 w-7 h-7 rounded-[10px] flex items-center justify-center text-xs font-black text-white"
+                                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold text-white border border-white/10"
                                 style={{
-                                    background: i === 0 ? "linear-gradient(135deg,#F59E0B,#E8320A)" : i === 1 ? "linear-gradient(135deg,#9CA3AF,#6B7280)" : i === 2 ? "linear-gradient(135deg,#D97706,#92400E)" : `${a.color}88`,
-                                    fontFamily: "Nunito, sans-serif",
+                                    background: i === 0 ? "linear-gradient(135deg,#F59E0B,#E8320A)" : i === 1 ? "linear-gradient(135deg,#9CA3AF,#6B7280)" : i === 2 ? "linear-gradient(135deg,#D97706,#92400E)" : "rgba(255,255,255,0.1)",
                                 }}
                             >
-                                {i + 1}
+                                0{i + 1}
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p
-                                    className="text-xs font-bold leading-snug truncate group-hover:underline"
-                                    style={{ color: "#1A2035" }}
+                                    className="text-xs font-bold leading-snug truncate text-[var(--foreground)] group-hover:text-[#ffcd75] transition-colors"
                                 >
                                     {a.title}
                                 </p>
-                                <p className="text-xs mt-0.5" style={{ color: "#4A5568" }}>
-                                    {(a.views / 1000).toFixed(0)}K lượt xem
+                                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">
+                                    {(a.views / 1000).toFixed(0)}K views
                                 </p>
                             </div>
-                            <span className="text-lg flex-shrink-0">{a.image}</span>
+                            <span className="text-xl flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">{a.image}</span>
                         </div>
                     ))}
                 </div>
@@ -54,30 +53,25 @@ export default function SidebarWidgets() {
 
             {/* Quick stats */}
             <div
-                className="rounded-[28px] p-6 text-center shadow-clay-card overflow-hidden relative"
-                style={{ background: "linear-gradient(135deg, rgba(26,86,232,0.92), rgba(124,58,237,0.92))" }}
+                className="rounded-[24px] p-8 text-center overflow-hidden relative bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-xl group cursor-pointer"
             >
-                <div
-                    className="blob-2 absolute -top-8 -right-8 w-28 h-28 rounded-full blur-2xl opacity-30"
-                    style={{ background: "#E8320A" }}
+                {/* Glow decoration */}
+                <div 
+                    className="absolute -top-12 -right-12 w-32 h-32 blur-[40px] rounded-full opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity duration-500 bg-blue-500"
                 />
+                
                 <div className="relative">
-                    <div className="text-4xl mb-2">⚡</div>
+                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500">⚡</div>
                     <h3
-                        className="text-white font-black text-base mb-1"
-                        style={{ fontFamily: "Nunito, sans-serif" }}
+                        className="text-[var(--foreground)] font-medium text-xl tracking-tighter mb-2"
                     >
                         SportsPulse Pro
                     </h3>
-                    <p className="text-white/75 text-xs font-medium mb-4 leading-relaxed">
+                    <p className="text-zinc-500 text-xs font-normal mb-6 leading-relaxed">
                         Nhận tin độc quyền, phân tích chuyên sâu và không quảng cáo
                     </p>
                     <button
-                        className="w-full px-4 py-2.5 rounded-[18px] text-sm font-bold text-blue-700 transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
-                        style={{
-                            background: "white",
-                            boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
-                        }}
+                        className="w-full px-6 py-3 rounded-full text-xs font-bold bg-[var(--foreground)] text-[var(--background)] transition-all duration-300 hover:scale-105 active:scale-98 uppercase tracking-wider shadow-lg shadow-black/10"
                     >
                         Dùng Thử Miễn Phí ✨
                     </button>

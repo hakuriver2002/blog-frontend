@@ -7,11 +7,11 @@ import { NotificationBell } from '@/src/components/notifications/NotificationBel
 
 const navLinks = [
     { label: "Home", href: "/" },
-    { label: "Events", href: "/?category=events" },
-    { label: "Techniques", href: "/?category=techniques" },
-    { label: "Training", href: "/?category=training" },
-    { label: "News", href: "/?category=news" },
-    { label: "Competition", href: "/?category=competition" },
+    { label: "Article", href: "#articles" },
+    { label: "Gallary", href: "#gallary" },
+    { label: "Event", href: "#events" },
+    { label: "Study Location", href: "/study-locations" },
+    { label: "Coach", href: "/coachs" },
 ];
 
 export default function Navbar() {
@@ -45,20 +45,20 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
             <nav
-                className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-16 sm:h-20 rounded-[32px] sm:rounded-[40px] backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)]"
-                style={{ background: "#F0F4FA" }}
+                className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-16 sm:h-20 rounded-[32px] sm:rounded-[40px] backdrop-blur-xl border border-[var(--glass-border)] shadow-lg transition-colors duration-300"
+                style={{ background: "var(--background)", opacity: 0.9 }}
             >
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
                     <div
                         className="w-9 h-9 sm:w-11 sm:h-11 rounded-[16px] flex items-center justify-center text-xl sm:text-2xl shadow-md"
-                        style={{ background: "linear-gradient(135deg, #1A56E8 0%, #7C3AED 100%)" }}
+                        style={{ background: "linear-gradient(90deg, var(--color-mokoto-main), var(--foreground))", fontFamily: "Nunito, sans-serif" }}
                     >
                         <span style={{ color: "#ffffff" }}>🥋</span>
                     </div>
                     <span
-                        className="text-lg sm:text-xl font-black"
-                        style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                        className="text-lg sm:text-xl font-black text-[var(--foreground)]"
+                        style={{ fontFamily: "Nunito, sans-serif" }}
                     >
                         Karate<span style={{ color: "#e81a1a" }}>do</span>
                     </span>
@@ -70,8 +70,7 @@ export default function Navbar() {
                         <li key={link.label}>
                             <Link
                                 href={link.href}
-                                className="px-4 py-2 rounded-[16px] text-sm font-medium transition-all duration-200 hover:bg-blue-50 hover:text-blue-600"
-                                style={{ color: "#4A5568" }}
+                                className="px-6 py-2 rounded-[16px] text-sm font-medium transition-all duration-200 hover:bg-[var(--foreground)]/5 text-[var(--foreground)] opacity-70 hover:opacity-100"
                             >
                                 {link.label}
                             </Link>
@@ -87,17 +86,15 @@ export default function Navbar() {
 
                     {/* Mobile hamburger */}
                     <button
-                        className="md:hidden w-10 h-10 rounded-[14px] flex flex-col items-center justify-center gap-1.5 shadow-md"
-                        style={{ background: "rgba(255,255,255,0.70)" }}
+                        className="md:hidden w-10 h-10 rounded-[14px] flex flex-col items-center justify-center gap-1.5 shadow-md bg-[var(--glass-bg)] border border-[var(--glass-border)]"
                         onClick={() => setMenuOpen((v) => !v)}
                         aria-label="Toggle menu"
                     >
                         {[0, 1, 2].map((bar) => (
                             <span
                                 key={bar}
-                                className="block w-5 h-0.5 rounded-full transition-all duration-300"
+                                className="block w-5 h-0.5 rounded-full transition-all duration-300 bg-[var(--foreground)]"
                                 style={{
-                                    background: "#1A2035",
                                     transform:
                                         bar === 0 && menuOpen ? "rotate(45deg) translateY(7px)"
                                             : bar === 2 && menuOpen ? "rotate(-45deg) translateY(-7px)"
@@ -142,14 +139,14 @@ export default function Navbar() {
                                         <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 truncate">{user.fullName}</p>
                                         <p className="text-xs text-zinc-400 truncate">{user.email}</p>
                                         <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                                            <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded-full font-medium ${user.role === "admin" ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300" :
-                                                user.role === "editor" ? "bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300" :
+                                            <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded-full font-medium ${user.role === "ADMIN" ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300" :
+                                                user.role === "EDITOR" ? "bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300" :
                                                     "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300"
                                                 }`}>
-                                                {user.role === "admin" ? "👑" : user.role === "editor" ? "✏️" : "🎓"} {user.role}
+                                                {user.role === "ADMIN" ? "👑" : user.role === "EDITOR" ? "✏️" : "🎓"} {user.role}
                                             </span>
-                                            <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded-full font-medium ${user.status === "active" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" :
-                                                user.status === "pending" ? "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400" :
+                                            <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded-full font-medium ${user.status === "ACTIVE" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" :
+                                                user.status === "PENDING" ? "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400" :
                                                     "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
                                                 }`}>
                                                 {user.status}
@@ -213,8 +210,7 @@ export default function Navbar() {
                         <div className="flex items-center gap-2">
                             <Link
                                 href="/auth/register"
-                                className="hidden sm:flex px-5 py-2.5 rounded-[20px] text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-md"
-                                style={{ background: "linear-gradient(135deg, #3B82F6 0%, #1A56E8 100%)" }}
+                                className="hidden sm:flex px-5 py-2.5 rounded-[20px] text-sm font-bold bg-[var(--foreground)] text-[var(--background)] transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-md"
                             >
                                 Register
                             </Link>

@@ -39,29 +39,27 @@ export default function SearchModal({ open, onClose }: Props) {
 
     return (
         <div
-            className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4"
-            style={{ background: "rgba(20,30,60,0.55)", backdropFilter: "blur(8px)" }}
+            className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4 transition-colors duration-300"
+            style={{ background: "rgba(0,0,0,0.40)", backdropFilter: "blur(8px)" }}
             onClick={(e) => e.target === e.currentTarget && onClose()}
         >
             <div
-                className="w-full max-w-2xl rounded-[32px] overflow-hidden shadow-clay-card"
-                style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(24px)" }}
+                className="w-full max-w-2xl rounded-[32px] overflow-hidden shadow-2xl border border-[var(--glass-border)]"
+                style={{ background: "var(--background)", backdropFilter: "blur(24px)" }}
             >
                 {/* Search input */}
-                <div className="flex items-center gap-3 px-6 py-4 border-b border-black/8">
+                <div className="flex items-center gap-3 px-6 py-4 border-b border-[var(--glass-border)]">
                     <span className="text-2xl">🔍</span>
                     <input
                         ref={inputRef}
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Tìm bài viết, cầu thủ, đội bóng..."
-                        className="flex-1 text-base font-medium outline-none bg-transparent"
-                        style={{ color: "#1A2035" }}
+                        className="flex-1 text-base font-medium outline-none bg-transparent text-[var(--foreground)]"
                     />
                     <button
                         onClick={onClose}
-                        className="text-xs font-bold px-3 py-1.5 rounded-[12px]"
-                        style={{ background: "rgba(20,30,60,0.07)", color: "#4A5568" }}
+                        className="text-xs font-bold px-3 py-1.5 rounded-[12px] bg-[var(--foreground)]/5 text-[var(--foreground)] opacity-70 hover:opacity-100"
                     >
                         ESC
                     </button>
@@ -70,7 +68,7 @@ export default function SearchModal({ open, onClose }: Props) {
                 {/* Results */}
                 <div className="max-h-[420px] overflow-y-auto p-3">
                     {query.length > 1 && results.length === 0 && (
-                        <div className="py-12 text-center" style={{ color: "#4A5568" }}>
+                        <div className="py-12 text-center text-zinc-500">
                             <div className="text-4xl mb-3">🔎</div>
                             <p className="font-medium">Không tìm thấy kết quả cho &ldquo;{query}&rdquo;</p>
                         </div>
@@ -78,7 +76,7 @@ export default function SearchModal({ open, onClose }: Props) {
 
                     {query.length <= 1 && (
                         <div className="py-4 px-3">
-                            <p className="text-xs font-black tracking-widest mb-3" style={{ color: "#4A5568", fontFamily: "Nunito, sans-serif" }}>
+                            <p className="text-xs font-black tracking-widest mb-3 text-zinc-500" style={{ fontFamily: "Nunito, sans-serif" }}>
                                 GỢI Ý TÌM KIẾM
                             </p>
                             <div className="flex flex-wrap gap-2">
@@ -86,8 +84,7 @@ export default function SearchModal({ open, onClose }: Props) {
                                     <button
                                         key={s}
                                         onClick={() => setQuery(s)}
-                                        className="text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-150 hover:scale-105"
-                                        style={{ background: "rgba(26,86,232,0.10)", color: "#1A56E8" }}
+                                        className="text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-150 hover:scale-105 bg-[var(--foreground)]/5 text-[var(--foreground)]"
                                     >
                                         {s}
                                     </button>
@@ -99,10 +96,7 @@ export default function SearchModal({ open, onClose }: Props) {
                     {results.map((article) => (
                         <div
                             key={article.id}
-                            className="flex items-center gap-4 p-3 rounded-[20px] cursor-pointer transition-all duration-200 hover:shadow-clay-card group"
-                            style={{ background: "transparent" }}
-                            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(26,86,232,0.05)")}
-                            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                            className="flex items-center gap-4 p-3 rounded-[20px] cursor-pointer transition-all duration-200 hover:bg-[var(--foreground)]/5 group"
                         >
                             <div className="text-3xl">{article.image}</div>
                             <div className="flex-1 min-w-0">
@@ -113,11 +107,11 @@ export default function SearchModal({ open, onClose }: Props) {
                                     >
                                         {article.category}
                                     </span>
-                                    <span className="text-xs" style={{ color: "#4A5568" }}>{article.publishedAt}</span>
+                                    <span className="text-xs text-zinc-500">{article.publishedAt}</span>
                                 </div>
                                 <p
-                                    className="text-sm font-bold leading-snug truncate"
-                                    style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                                    className="text-sm font-bold leading-snug truncate text-[var(--foreground)]"
+                                    style={{ fontFamily: "Nunito, sans-serif" }}
                                 >
                                     {article.title}
                                 </p>

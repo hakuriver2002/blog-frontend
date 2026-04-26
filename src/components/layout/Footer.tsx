@@ -12,33 +12,33 @@ export default function Footer() {
                 />
             </div>
 
-            <div className="relative max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-black/8">
+            <div className="relative max-w-7xl mx-auto transition-colors duration-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-[var(--glass-border)]">
                     {/* Brand */}
                     <div className="lg:col-span-1">
                         <div className="flex items-center gap-3 mb-4">
                             <div
                                 className="w-11 h-11 rounded-[16px] flex items-center justify-center text-2xl shadow-clay-button"
-                                style={{ background: "linear-gradient(135deg, #1A56E8, #7C3AED)" }}
+                                style={{ background: "linear-gradient(135deg, var(--color-mokoto-main), var(--foreground))" }}
                             >
                                 <span style={{ color: "#ffffff" }}>🥋</span>
                             </div>
                             <span
-                                className="text-xl font-black"
-                                style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                                className="text-xl font-black text-[var(--foreground)]"
+                                style={{ fontFamily: "Nunito, sans-serif" }}
                             >
                                 Karate<span style={{ color: "#e81a1aff" }}>do</span>
                             </span>
                         </div>
-                        <p className="text-sm font-medium leading-relaxed mb-4" style={{ color: "#4A5568" }}>
+                        <p className="text-sm font-medium leading-relaxed mb-4 text-zinc-500">
                             Nguồn tin thể thao đáng tin cậy nhất Việt Nam. Cập nhật 24/7, phân tích chuyên sâu.
                         </p>
                         <div className="flex gap-3">
                             {["🐦", "📘", "📸", "▶️"].map((icon, i) => (
                                 <button
                                     key={i}
-                                    className="w-9 h-9 rounded-[14px] flex items-center justify-center text-sm transition-all duration-200 hover:-translate-y-0.5 shadow-clay-card"
-                                    style={{ background: "rgba(255,255,255,0.70)", backdropFilter: "blur(12px)" }}
+                                    className="w-9 h-9 rounded-[14px] flex items-center justify-center text-sm transition-all duration-200 hover:-translate-y-0.5 shadow-md bg-[var(--glass-bg)] border border-[var(--glass-border)]"
+                                    style={{ backdropFilter: "blur(12px)" }}
                                 >
                                     {icon}
                                 </button>
@@ -49,8 +49,8 @@ export default function Footer() {
                     {/* Sports */}
                     <div>
                         <h3
-                            className="text-sm font-black tracking-wide mb-4"
-                            style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                            className="text-sm font-black tracking-wide mb-4 text-[var(--foreground)]"
+                            style={{ fontFamily: "Nunito, sans-serif" }}
                         >
                             MÔN THỂ THAO
                         </h3>
@@ -59,8 +59,7 @@ export default function Footer() {
                                 <li key={s}>
                                     <a
                                         href="#"
-                                        className="text-sm font-medium transition-colors duration-150 hover:text-blue-600"
-                                        style={{ color: "#4A5568" }}
+                                        className="text-sm font-medium transition-colors duration-150 hover:text-[var(--color-mokoto-main)] text-zinc-500"
                                     >
                                         {s}
                                     </a>
@@ -72,8 +71,8 @@ export default function Footer() {
                     {/* Links */}
                     <div>
                         <h3
-                            className="text-sm font-black tracking-wide mb-4"
-                            style={{ fontFamily: "Nunito, sans-serif", color: "#1A2035" }}
+                            className="text-sm font-black tracking-wide mb-4 text-[var(--foreground)]"
+                            style={{ fontFamily: "Nunito, sans-serif" }}
                         >
                             THÔNG TIN
                         </h3>
@@ -82,8 +81,7 @@ export default function Footer() {
                                 <li key={l}>
                                     <a
                                         href="#"
-                                        className="text-sm font-medium transition-colors duration-150 hover:text-blue-600"
-                                        style={{ color: "#4A5568" }}
+                                        className="text-sm font-medium transition-colors duration-150 hover:text-[var(--color-mokoto-main)] text-zinc-500"
                                     >
                                         {l}
                                     </a>
@@ -95,7 +93,7 @@ export default function Footer() {
 
                 {/* Bottom bar */}
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs font-medium text-center sm:text-left" style={{ color: "#4A5568" }}>
+                    <p className="text-xs font-medium text-center sm:text-left text-zinc-500">
                         © 2026 SportsPulse. Tất cả quyền được bảo lưu.
                     </p>
                     <div className="flex items-center gap-2">
@@ -103,7 +101,7 @@ export default function Footer() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
-                        <span className="text-xs font-medium" style={{ color: "#4A5568" }}>
+                        <span className="text-xs font-medium text-zinc-500">
                             Cập nhật lần cuối: 31/03/2026 · 14:32 ICT
                         </span>
                     </div>

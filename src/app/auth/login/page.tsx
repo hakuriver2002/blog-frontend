@@ -32,7 +32,7 @@ export default function LoginPage() {
         if (res?.success) {
             setServerSuccess(res.message);
             setTimeout(() => {
-                router.push(res.redirectTo);
+                router.push(res.redirectUrl);
             }, 1000);
         } else {
             setServerSuccess(null);
